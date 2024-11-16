@@ -2,8 +2,8 @@ name: Build Paper Minecraft Plugin
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   build:
