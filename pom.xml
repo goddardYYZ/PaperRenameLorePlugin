@@ -3,40 +3,67 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Group ID, Artifact ID, and Version of your project -->
     <groupId>com.yourdomain</groupId>
-    <artifactId>paperrenameloreplugin</artifactId>
-    <version>1.0</version>
+    <artifactId>PaperRenameLorePlugin</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
 
-    <repositories>
-        <repository>
-            <id>papermc-repo</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-    </repositories>
+    <!-- Parent section (if applicable, otherwise you can omit) -->
+    <parent>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version> <!-- Make sure the version is up-to-date -->
+    </parent>
 
     <dependencies>
+        <!-- Add your dependencies here -->
+        <!-- Example for Paper API -->
         <dependency>
-            <groupId>io.papermc.paper</groupId>
+            <groupId>io.papermc</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.20.3-R0.1-SNAPSHOT</version>
+            <version>1.20.2-R0.1-SNAPSHOT</version> <!-- Example version, change as needed -->
             <scope>provided</scope>
         </dependency>
+        <!-- You can add other dependencies as needed -->
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Latest version of the compiler plugin -->
+                <configuration>
+                    <source>1.8</source> <!-- Use Java 8 source version -->
+                    <target>1.8</target> <!-- Use Java 8 target version -->
+                </configuration>
+            </plugin>
+
+            <!-- Optional: Shade Plugin for creating an Uber JAR (if needed) -->
+            <!-- If you want all your dependencies included in a single JAR file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>shade</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <!-- Optional: Repositories for external dependencies -->
+    <repositories>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
 </project>
